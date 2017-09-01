@@ -24,11 +24,11 @@ addons:
 before_install:
   - pip install --ignore-installed --upgrade pip setuptools wheel
   - pip install --only-binary=numpy,scipy numpy scipy
-  - pip install https://github.com/networkx/networkx/archive/networkx-2.0b2.tar.gz
 
 install:
   - python setup.py sdist
   - pip install dist/tulip-*.tar.gz
+  - pip install https://github.com/networkx/networkx/archive/networkx-2.0b2.tar.gz
 
 before_script:
   - pip install nose
