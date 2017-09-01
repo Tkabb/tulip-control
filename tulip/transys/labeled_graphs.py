@@ -921,7 +921,7 @@ class LabeledDiGraph(nx.MultiDiGraph):
         """
         for n in nodes:
             try:
-                n not in self.succ
+                n not in self._succ
                 node = n
                 attr_dict = attr
             except TypeError:
@@ -969,9 +969,9 @@ class LabeledDiGraph(nx.MultiDiGraph):
                   'firstly add the new nodes.'
             logger.warning(msg)
         # check nodes exist
-        if u not in self.succ:
+        if u not in self._succ:
             raise ValueError('Graph does not have node u: ' + str(u))
-        if v not in self.succ:
+        if v not in self._succ:
             raise ValueError('Graph does not have node v: ' + str(v))
         attr_dict = self._update_attr_dict_with_attr(attr_dict, attr)
         # define typed dict
@@ -982,7 +982,6 @@ class LabeledDiGraph(nx.MultiDiGraph):
         typed_attr.update(attr_dict)
         logger.debug('Given: attr_dict = ' + str(attr_dict))
         logger.debug('Stored in: typed_attr = ' + str(typed_attr))
-        # may be possible to speedup using .succ
         existing_u_v = self.get_edge_data(u, v, default={})
         if dict() in existing_u_v.values():
             msg = (
