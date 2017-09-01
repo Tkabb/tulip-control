@@ -996,7 +996,7 @@ class LabeledDiGraph(nx.MultiDiGraph):
                                      check)
         # the only change from nx in this clause is using TypedDict
         logger.debug('adding edge: ' + str(u) + ' ---> ' + str(v))
-        if v in self.succ[u]:
+        if v in self._succ[u]:
             keydict = self.adj[u][v]
             # find a unique integer key
             if key is None:
@@ -1010,8 +1010,8 @@ class LabeledDiGraph(nx.MultiDiGraph):
             # selfloops work this way without special treatment
             key = 0
             keydict = {key: typed_attr}
-            self.succ[u][v] = keydict
-            self.pred[v][u] = keydict
+            self._succ[u][v] = keydict
+            self._pred[v][u] = keydict
 
     def add_edges_from(self, labeled_ebunch, attr_dict=None,
                        check=True, **attr):
